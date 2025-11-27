@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سينما العرب - بوابة الأفلام والمسلسلات العربية</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/movie-card.js"></script>
+    <script src="components/video-player.js"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <custom-navbar></custom-navbar>
+    
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="hero relative rounded-xl overflow-hidden mb-12 h-96">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
+            <img src="http://static.photos/cinema/1200x630/1" alt="سينما العرب" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 z-20 p-8 w-full">
+                <h1 class="text-4xl font-bold mb-4">استكشف عالم السينما العربية</h1>
+                <p class="text-xl mb-6">آلاف الأفلام والمسلسلات العربية بين يديك</p>
+                <div class="flex gap-4">
+                        <a href="#" id="watch-now-btn" class="glass-button px-6 py-3 rounded-lg font-medium transition flex items-center gap-2 float-animation">
+<i data-feather="play-circle"></i>
+                        استكشف الآن
+                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-lg font-medium transition border border-gray-700 flex items-center gap-2">
+                        <i data-feather="info"></i>
+                        كيف يعمل
+                    </a>
+</div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 border-b border-gray-700 pb-2">الأقسام</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <a href="#" class="category-card bg-gray-800 rounded-lg p-4 text-center hover:bg-gray-700 transition">
+                    <i data-feather="film" class="w-8 h-8 mx-auto mb-2"></i>
+                    <span>أفلام</span>
+                </a>
+                <a href="#" class="category-card bg-gray-800 rounded-lg p-4 text-center hover:bg-gray-700 transition">
+                    <i data-feather="tv" class="w-8 h-8 mx-auto mb-2"></i>
+                    <span>مسلسلات</span>
+                </a>
+                <a href="#" class="category-card bg-gray-800 rounded-lg p-4 text-center hover:bg-gray-700 transition">
+                    <i data-feather="award" class="w-8 h-8 mx-auto mb-2"></i>
+                    <span>أكشن</span>
+                </a>
+                <a href="#" class="category-card bg-gray-800 rounded-lg p-4 text-center hover:bg-gray-700 transition">
+                    <i data-feather="heart" class="w-8 h-8 mx-auto mb-2"></i>
+                    <span>رومانسي</span>
+                </a>
+                <a href="#" class="category-card bg-gray-800 rounded-lg p-4 text-center hover:bg-gray-700 transition">
+                    <i data-feather="smile" class="w-8 h-8 mx-auto mb-2"></i>
+                    <span>كوميدي</span>
+                </a>
+                <a href="#" class="category-card bg-gray-800 rounded-lg p-4 text-center hover:bg-gray-700 transition">
+                    <i data-feather="zap" class="w-8 h-8 mx-auto mb-2"></i>
+                    <span>تشويق</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Latest Movies -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold border-b border-gray-700 pb-2">أحدث الأفلام</h2>
+                <a href="#" class="text-red-500 hover:text-red-400 transition">عرض الكل</a>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                <custom-movie-card 
+                    data-id="1"
+                    title="الخروج من القاهرة"
+                    image="http://static.photos/cinema/320x240/1"
+                    rating="8.2"
+                    year="2023"
+                    category="دراما">
+</custom-movie-card>
+                <custom-movie-card 
+                    data-id="2"
+                    title="الممر"
+                    image="http://static.photos/cinema/320x240/2"
+                    rating="7.9"
+                    year="2022"
+                    category="أكشن">
+</custom-movie-card>
+                <custom-movie-card 
+                    title="يوم الدين"
+                    image="http://static.photos/cinema/320x240/3"
+                    rating="8.5"
+                    year="2023"
+                    category="دراما">
+                </custom-movie-card>
+                <custom-movie-card 
+                    title="ليلة هنا وسرور"
+                    image="http://static.photos/cinema/320x240/4"
+                    rating="7.2"
+                    year="2021"
+                    category="كوميدي">
+                </custom-movie-card>
+                <custom-movie-card 
+                    title="الكنز"
+                    image="http://static.photos/cinema/320x240/5"
+                    rating="6.8"
+                    year="2022"
+                    category="مغامرات">
+                </custom-movie-card>
+            </div>
+        </section>
+
+        <!-- Latest Series -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold border-b border-gray-700 pb-2">أحدث المسلسلات</h2>
+                <a href="#" class="text-red-500 hover:text-red-400 transition">عرض الكل</a>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                <custom-movie-card 
+                    title="الاختيار 3"
+                    image="http://static.photos/cinema/320x240/6"
+                    rating="9.1"
+                    year="2023"
+                    category="تاريخي">
+                </custom-movie-card>
+                <custom-movie-card 
+                    title="الملك"
+                    image="http://static.photos/cinema/320x240/7"
+                    rating="8.7"
+                    year="2023"
+                    category="دراما">
+                </custom-movie-card>
+                <custom-movie-card 
+                    title="العميل 1001"
+                    image="http://static.photos/cinema/320x240/8"
+                    rating="8.3"
+                    year="2022"
+                    category="تشويق">
+                </custom-movie-card>
+                <custom-movie-card 
+                    title="حدود الشر"
+                    image="http://static.photos/cinema/320x240/9"
+                    rating="7.9"
+                    year="2021"
+                    category="دراما">
+                </custom-movie-card>
+                <custom-movie-card 
+                    title="ليالي أوجيني"
+                    image="http://static.photos/cinema/320x240/10"
+                    rating="8.4"
+                    year="2023"
+                    category="رومانسي">
+                </custom-movie-card>
+            </div>
+        </section>
+
+        <!-- Featured Section -->
+        <section class="featured bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-8 mb-12">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="md:w-1/2">
+                    <img src="http://static.photos/cinema/640x360/11" alt="فيلم مميز" class="rounded-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <span class="text-red-500 font-medium">مميز هذا الأسبوع</span>
+                    <h2 class="text-3xl font-bold my-4">الرحلة</h2>
+                    <p class="text-gray-300 mb-4">فيلم درامي يحكي قصة شاب مصري يقرر السفر إلى أوروبا بحثاً عن حياة أفضل، لكنه يواجه العديد من التحديات والصعوبات في رحلته.</p>
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="bg-red-600 px-3 py-1 rounded-full text-sm">8.7</span>
+                        <span>2023</span>
+                        <span>2h 15m</span>
+                        <span>دراما</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg font-medium transition">شاهد الآن</a>
+                        <a href="#" class="bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg font-medium transition">إضافة إلى القائمة</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <video-player></video-player>
+    <custom-footer></custom-footer>
+<script>
+        feather.replace();
+    </script>
+    <script src="script.js"></script>
+<script src="https://huggingface.co/deepsite/deepsite-badge.js"></script>
+</body>
+</html>

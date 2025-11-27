@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الفيلم - سينما العرب</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/video-player.js"></script>
+    <script src="components/actor-card.js"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <custom-navbar></custom-navbar>
+    
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Movie Poster -->
+            <div class="lg:w-1/3">
+                <div class="relative rounded-xl overflow-hidden shadow-lg">
+                    <img id="movie-poster" src="" alt="بوستر الفيلم" class="w-full h-auto rounded-xl">
+                    <div class="absolute top-4 right-4 bg-red-600 text-white px-2 py-1 rounded-full text-sm font-bold" id="movie-rating"></div>
+                </div>
+                
+                <!-- Watch Now Button -->
+                <button id="watch-now" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-bold mt-4 transition flex items-center justify-center gap-2">
+                    <i data-feather="play"></i>
+                    مشاهدة الفيلم
+                </button>
+                
+                <!-- Movie Info -->
+                <div class="bg-gray-800 rounded-xl p-4 mt-4">
+                    <h3 class="font-bold mb-2">معلومات الفيلم</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex justify-between">
+                            <span>السنة:</span>
+                            <span id="movie-year"></span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>المدة:</span>
+                            <span id="movie-duration"></span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>التصنيف:</span>
+                            <span id="movie-category"></span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>الجودة:</span>
+                            <span>1080p</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>اللغة:</span>
+                            <span>العربية</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Movie Details -->
+            <div class="lg:w-2/3">
+                <h1 id="movie-title" class="text-3xl font-bold mb-2"></h1>
+                <div class="flex items-center gap-4 mb-6">
+                    <span id="movie-rating-stars" class="flex text-yellow-400"></span>
+                    <span id="movie-release-year" class="text-gray-400"></span>
+                </div>
+                
+                <!-- Movie Description -->
+                <div class="bg-gray-800 rounded-xl p-6 mb-8">
+                    <h2 class="text-xl font-bold mb-4">قصة الفيلم</h2>
+                    <p id="movie-description" class="text-gray-300 leading-relaxed"></p>
+                </div>
+                
+                <!-- Video Player -->
+                <video-player></video-player>
+                
+                <!-- Actors -->
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold mb-4">طاقم التمثيل</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="actors-grid">
+                        <!-- Actor cards will be inserted here -->
+                    </div>
+                </div>
+                
+                <!-- Similar Movies -->
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">أفلام مشابهة</h2>
+                        <a href="#" class="text-gray-400 hover:text-white transition">عرض الكل</a>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6" id="similar-movies">
+                        <!-- Similar movie cards will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+    
+    <script>
+        feather.replace();
+        
+        // Get movie ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('id');
+        
+        // In a real app, you would fetch movie data from your backend API
+        // For demonstration, we'll use sample data based on the ID
+        document.addEventListener('DOMContentLoaded', () => {
+            const movies = {
+                '1': {
+                    title: "الخروج من القاهرة",
+                    image: "http://static.photos/cinema/640x360/1",
+                    rating: 8.2,
+                    year: 2023,
+                    category: "دراما",
+                    duration: "2h 15m",
+                    description: "فيلم درامي يحكي قصة شاب مصري يقرر السفر إلى أوروبا بحثاً عن حياة أفضل، لكنه يواجه العديد من التحديات والصعوبات في رحلته. العمل يتناول قضية الهجرة غير الشرعية بكل تفاصيلها المؤلمة.",
+                    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                    actors: [
+                        { name: "أحمد عز", role: "بطل الفيلم", image: "http://static.photos/people/200x200/1" },
+                        { name: "منى زكي", role: "بطلة الفيلم", image: "http://static.photos/people/200x200/2" },
+                        { name: "يوسف الشريف", role: "الصديق", image: "http://static.photos/people/200x200/3" },
+                        { name: "هند صبري", role: "الأم", image: "http://static.photos/people/200x200/4" }
+                    ],
+                    similar: [
+                        { title: "يوم الدين", image: "http://static.photos/cinema/320x240/3", rating: 8.5, year: 2023, category: "دراما" },
+                        { title: "الملك", image: "http://static.photos/cinema/320x240/7", rating: 8.7, year: 2023, category: "دراما" },
+                        { title: "الرحلة", image: "http://static.photos/cinema/320x240/11", rating: 8.7, year: 2023, category: "دراما" }
+                    ]
+                },
+                '2': {
+                    title: "الممر",
+                    image: "http://static.photos/cinema/640x360/2",
+                    rating: 7.9,
+                    year: 2022,
+                    category: "أكشن",
+                    duration: "1h 55m",
+                    description: "فيلم أكشن حربي يتناول بطولات الجيش المصري خلال حرب الاستنزاف في منطقة الممر في سيناء، حيث يعيد الفيلم تصوير المعارك البطولية التي خاضها الجنود المصريون.",
+                    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+                    actors: [
+                        { name: "أحمد عز", role: "القائد", image: "http://static.photos/people/200x200/5" },
+                        { name: "محمد إمام", role: "الجندي", image: "http://static.photos/people/200x200/6" },
+                        { name: "أمير كرارة", role: "الضابط", image: "http://static.photos/people/200x200/7" },
+                        { name: "محمود حافظ", role: "المخبر", image: "http://static.photos/people/200x200/8" }
+                    ],
+                    similar: [
+                        { title: "الكنز", image: "http://static.photos/cinema/320x240/5", rating: 6.8, year: 2022, category: "مغامرات" },
+                        { title: "العميل 1001", image: "http://static.photos/cinema/320x240/8", rating: 8.3, year: 2022, category: "تشويق" },
+                        { title: "الاختيار 3", image: "http://static.photos/cinema/320x240/6", rating: 9.1, year: 2023, category: "تاريخي" }
+                    ]
+                }
+            };
+
+            const movie = movies[movieId] || movies['1']; // Default to first movie if ID not found
+            
+            // Populate movie data
+            document.getElementById('movie-title').textContent = movie.title;
+            document.getElementById('movie-poster').src = movie.image;
+            document.getElementById('movie-rating').textContent = movie.rating;
+            document.getElementById('movie-year').textContent = movie.year;
+            document.getElementById('movie-duration').textContent = movie.duration;
+            document.getElementById('movie-category').textContent = movie.category;
+            document.getElementById('movie-release-year').textContent = movie.year;
+            document.getElementById('movie-description').textContent = movie.description;
+            
+            // Create rating stars
+            const ratingStars = document.getElementById('movie-rating-stars');
+            const fullStars = Math.floor(movie.rating / 2);
+            for (let i = 0; i < 5; i++) {
+                const star = document.createElement('i');
+                star.setAttribute('data-feather', i < fullStars ? 'star' : 'star');
+                star.style.fill = i < fullStars ? 'currentColor' : 'none';
+                ratingStars.appendChild(star);
+            }
+            
+            // Populate actors
+            const actorsGrid = document.getElementById('actors-grid');
+            movie.actors.forEach(actor => {
+                const actorCard = document.createElement('custom-actor-card');
+                actorCard.setAttribute('name', actor.name);
+                actorCard.setAttribute('role', actor.role);
+                actorCard.setAttribute('image', actor.image);
+                actorsGrid.appendChild(actorCard);
+            });
+            
+            // Populate similar movies
+            const similarMovies = document.getElementById('similar-movies');
+            movie.similar.forEach(similar => {
+                const movieCard = document.createElement('custom-movie-card');
+                movieCard.setAttribute('title', similar.title);
+                movieCard.setAttribute('image', similar.image);
+                movieCard.setAttribute('rating', similar.rating);
+                movieCard.setAttribute('year', similar.year);
+                movieCard.setAttribute('category', similar.category);
+                similarMovies.appendChild(movieCard);
+            });
+            
+            // Watch Now button
+            document.getElementById('watch-now').addEventListener('click', () => {
+                const videoPlayer = document.querySelector('video-player');
+                if (videoPlayer) {
+                    videoPlayer.openPlayer(movie.videoUrl);
+                }
+            });
+            
+            // Initialize Feather Icons again after dynamic content
+            feather.replace();
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
